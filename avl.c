@@ -28,7 +28,6 @@
  */
 
 #include "avl.h"
-#include <stdio.h>
 
 #define avl_cmp2idx(cmp) (!((cmp) < 0))
 #define avl_balance2idx(cmp) (!((cmp) < 0))
