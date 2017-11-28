@@ -130,15 +130,15 @@ avl_next(avl_node_t *node)
 static int
 avl_rebalance(avl_root_t *avlroot, avl_node_t *node)
 {
-	avl_node_t *child;
 	int which_child;
+	avl_node_t *child;
 
 	which_child = avl_balance2idx(node->avl_balance);
 	child = node->avl_children[which_child];
 
 	if (node->avl_balance == child->avl_balance) {
-		avl_node_t *R, *S, *R_parent, *B;
 		avl_node_t **slot;
+		avl_node_t *R, *S, *R_parent, *B;
 
 		/*
 		 * Case 1:
@@ -178,8 +178,8 @@ avl_rebalance(avl_root_t *avlroot, avl_node_t *node)
 		S->avl_balance = R->avl_balance = 0;
 		return 1;
 	} else if (child->avl_balance) {
-		avl_node_t *R, *S, *Q, *R_parent, *B, *C;
 		avl_node_t **slot;
+		avl_node_t *R, *S, *Q, *R_parent, *B, *C;
 
 		/*
 		 * Case 2:
@@ -251,7 +251,7 @@ avl_rebalance(avl_root_t *avlroot, avl_node_t *node)
 		S->avl_parent = Q;
 
 		if (Q->avl_balance == S->avl_balance) {
-			S->avl_balance = Q->avl_balance * -1;	
+			S->avl_balance = Q->avl_balance * -1;
 			R->avl_balance = 0;
 		} else if (Q->avl_balance) {
 			R->avl_balance = Q->avl_balance * -1;
@@ -263,8 +263,8 @@ avl_rebalance(avl_root_t *avlroot, avl_node_t *node)
 		Q->avl_balance = 0;
 		return 1;
 	} else {
-		avl_node_t *R, *S, *R_parent, *B;
 		avl_node_t **slot;
+		avl_node_t *R, *S, *R_parent, *B;
 
 		/*
 		 * Case 3:
