@@ -100,6 +100,12 @@ void
 avl_remove(avl_root_t *avlroot, avl_node_t *node);
 
 avl_node_t *
+avl_first(avl_root_t *root);
+
+avl_node_t *
+avl_last(avl_root_t *root);
+
+avl_node_t *
 avl_prev(avl_node_t *node);
 
 avl_node_t *

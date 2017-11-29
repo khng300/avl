@@ -68,8 +68,7 @@ avl_search(avl_root_t *avlroot, avl_node_t *key, avl_cmp_t *cmpfunc)
 /*
  * Find the predecessor or successor of the current node based on direction
  * given.
- * 
- * dir must be either -1 or 1.
+ * The direction must be either -1 (left) or 1 (right).
  *
  * Return either a valid AVL node or NULL.
  */
@@ -93,6 +92,49 @@ avl_prev_next(avl_node_t *node, int dir)
 		parent = node->avl_parent;
 	}
 	return parent;
+}
+
+/*
+ * Get the first element from the AVL tree based on direction given.
+ * The direction must be either -1 (left) or 1 (right).
+ * 
+ * Return either a valid AVL node or NULL.
+ */
+static avl_node_t *
+avl_leftmost_rightmost(avl_root_t *root, int dir)
+{
+	int which_child = avl_cmp2idx(dir);
+	avl_node_t *prev = NULL;
+	avl_node_t *node = root->avl_root;
+
+	while (node) {
+		prev = node;
+		node = node->avl_children[which_child];
+	}
+
+	return prev;
+}
+
+/*
+ * Get the first element from the AVL tree.
+ * 
+ * Return either a valid AVL node or NULL.
+ */
+avl_node_t *
+avl_first(avl_root_t *root)
+{
+	return avl_leftmost_rightmost(root, -1);
+}
+
+/*
+ * Get the last element from the AVL tree.
+ * 
+ * Return either a valid AVL node or NULL.
+ */
+avl_node_t *
+avl_last(avl_root_t *root)
+{
+	return avl_leftmost_rightmost(root, 1);
 }
 
 /*
